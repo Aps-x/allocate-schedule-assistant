@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A website that helps with scheduling around university classes. Specifically for helping with choosing the right tutorials / lectures on Allocate+.">
+    <meta name="author" content="Adam Seaton">
+
+    <title>Allocate+ Schedule Assistant</title>
+
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header__inner | content_column">
+            <h1 class="header__title">Allocate Schedule Assistant</h1>
+        </div>
+    </header>
+
+    <main class="main">
+
+        <section class="help_section | section content_column">
+            <h2 class="section__heading">Help Section</h2>
+            <p class="section__subheading">A guide for using this website</p>
+
+            <div class="even_columns">
+                <img class="help_section__demo" src="images/demo.gif" alt="Written instructions adjacent">
+                <article class="help_section__article">
+                    <h3 class="help_section__heading">Step-By-Step Guide:</h3>
+                    <ol class="help_section__list">
+                        <li class="help_section__list_item">Navigate to your timetable on the Allocate+ website</li>
+                        <li class="help_section__list_item">On the left hand side, click on a tutorial or lecture link</li>
+                        <li class="help_section__list_item">In the main window you will see a table with your tutorial or lecture details, select the entire table and copy it</li>
+                        <li class="help_section__list_item">Paste the unit information into the input box below</li>
+                        <li class="help_section__list_item">Add a name for the unit and a color and press the submit button</li>
+                    </ol>
+                </article>
+            </div>
+            
+
+        </section>
+
+        <section class="unit_section | section content_column">
+            <h2 class="section__heading">University Units Section</h2>
+            <p class="section__subheading">Enter tutorial and lecture information for a unit</p>
+            
+            <form class="unit_form | form">
+                <!-- Name -->
+                <div class="form__input_group">
+                    <label class="form__label" for="unit_name">Enter unit name:</label>
+                    <input id="unit_name" class="form__input" type="text" placeholder="Intro to filling in forms" required>    
+                </div>
+                <!-- Color -->
+                <div class="form__input_group">
+                    <label class="form__label" for="unit_color">Enter a color:</label>
+                    <input id="unit_color" class="form__input" type="color" value="#004d66">
+                </div>
+                <!-- Unit Info -->
+                <div class="form__input_group">
+                    <label class="form__label" for="unit_info">Copy and paste tutorial or lecture info from Allocate+ into here:</label>
+                    <textarea id="unit_info" class="unit_form__textarea | form__input" spellcheck="false" autocomplete="off" autocorrect="off" required placeholder=" 	Activity 	Day 	Time 	Free 	Campus 	Location 	Duration 	Weeks 	Description
+            01 	Thu 	09:30 	9 	BRUCE 	Building 6 Level B Room 14 - Intelligent Systems Laboratory 	2 hrs 	15/2-21/3, 4/4-18/4, 2/5 	-
+            03 	Thu 	16:30 	30 	BRUCE 	Building 6 Level B Room 14 - Intelligent Systems Laboratory 	2 hrs 	15/2-21/3, 4/4-18/4, 2/5 	-"></textarea>    
+                </div>
+
+                <button id="unit_button" class="button">
+                    <span class="button__shadow"></span>
+                    <span class="button__edge"></span>
+                    <span class="button__front">Submit</span>
+                </button>
+            </form>
+
+            <table id="unit_table" class="table">
+                <thead class="table__head">
+                    <tr class="table__row">
+                        <th class="table__heading" scope="col">Unit Name</th>
+                        <th class="table__heading" scope="col">Tutorial ID</th>
+                        <th class="table__heading" scope="col">Day</th>
+                        <th class="table__heading" scope="col">Start Time</th>
+                        <th class="table__heading" scope="col">Duration</th>
+                        <th class="table__heading" scope="col">Spots Left</th>
+                        <th class="table__heading" scope="col">Options</th>
+                    </tr>
+                </thead>
+            </table>
+        </section>
+
+        <section class="timetable_section | section">
+            <div class="content_column">
+                <h2 class="section__heading">Timetable Section</h2>
+                <p class="section__subheading">Change timetable settings</p>
+
+                <form class="timetable_form | form">
+                    <div class="form__input_group">
+                        <label for="painting_method">Select a paint method:</label>
+                        <select id="painting_method" class="timetable_form__select">
+                            <option value="regular" selected>Regular</option>
+                            <option value="color_mix">Color Mixing</option>
+                        </select>
+                    </div>
+
+                    <div class="form__input_group">
+                        <label for="earliest_start">Select an earliest start time:</label>
+                        <select id="earliest_start" class="timetable_form__select">
+                            <option value="1" selected>7:00 AM</option>
+                            <option value="2">7:30 AM</option>
+                            <option value="3">8:00 AM</option>
+                            <option value="4">8:30 AM</option>
+                            <option value="5">9:00 AM</option>
+                            <option value="6">9:30 AM</option>
+                            <option value="7">10:00 AM</option>
+                            <option value="8">10:30 AM</option>
+                            <option value="9">11:00 AM</option>
+                            <option value="10">11:30 AM</option>
+                            <option value="11">12:00 PM</option>
+                            <option value="12">12:30 PM</option>
+                            <option value="13">1:00 PM</option>
+                            <option value="14">1:30 PM</option>
+                            <option value="15">2:00 PM</option>
+                            <option value="16">2:30 PM</option>
+                            <option value="17">3:00 PM</option>
+                            <option value="18">3:30 PM</option>
+                            <option value="19">4:00 PM</option>
+                            <option value="20">4:30 PM</option>
+                            <option value="21">5:00 PM</option>
+                            <option value="22">5:30 PM</option>
+                            <option value="23">6:00 PM</option>
+                            <option value="24">6:30 PM</option>
+                            <option value="25">7:00 PM</option>
+                        </select>    
+                    </div>
+
+                    <div class="form__input_group">
+                        <label for="latest_end">Select a latest end time:</label>
+                        <select id="latest_end" class="timetable_form__select">
+                            <option value="1">7:00 AM</option>
+                            <option value="2">7:30 AM</option>
+                            <option value="3">8:00 AM</option>
+                            <option value="4">8:30 AM</option>
+                            <option value="5">9:00 AM</option>
+                            <option value="6">9:30 AM</option>
+                            <option value="7">10:00 AM</option>
+                            <option value="8">10:30 AM</option>
+                            <option value="9">11:00 AM</option>
+                            <option value="10">11:30 AM</option>
+                            <option value="11">12:00 PM</option>
+                            <option value="12">12:30 PM</option>
+                            <option value="13">1:00 PM</option>
+                            <option value="14">1:30 PM</option>
+                            <option value="15">2:00 PM</option>
+                            <option value="16">2:30 PM</option>
+                            <option value="17">3:00 PM</option>
+                            <option value="18">3:30 PM</option>
+                            <option value="19">4:00 PM</option>
+                            <option value="20">4:30 PM</option>
+                            <option value="21">5:00 PM</option>
+                            <option value="22">5:30 PM</option>
+                            <option value="23">6:00 PM</option>
+                            <option value="24">6:30 PM</option>
+                            <option value="25" selected>7:00 PM</option>    
+                        </select>
+                    </div>
+
+                    <div class="form__input_group">
+                        <span class="form__inline">
+                            <label for="spots_toggle">No spots toggle:</label>
+                            <input type="checkbox" id="spots_toggle" class="form__input" autocomplete="off">
+                        </span>
+                    </div>
+                    
+                    <button id="timetable_button" class="button">
+                        <span class="button__shadow"></span>
+                        <span class="button__edge"></span>
+                        <span class="button__front">Refresh Timetable</span>
+                    </button>
+                </form>
+            </div>
+
+            <table id="timetable" class="table">
+                <thead class="table__head">
+                    <tr class="table__row">
+                        <td class="table__heading"></td>
+                        <th class="table__heading" scope="col">Monday</th>
+                        <th class="table__heading" scope="col">Tuesday</th>
+                        <th class="table__heading" scope="col">Wednesday</th>
+                        <th class="table__heading" scope="col">Thursday</th>
+                        <th class="table__heading" scope="col">Friday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">7:00 AM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">7:30 AM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">8:00 AM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">8:30 AM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">9:00 AM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">9:30 AM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">10:00 AM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">10:30 AM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">11:00 AM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">11:30 AM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">12:00 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">12:30 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">1:00 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">1:30 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">2:00 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">2:30 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">3:00 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">3:30 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">4:00 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">4:30 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">5:00 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">5:30 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">6:00 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">6:30 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                    <tr class="table__row">
+                        <th class="table__cell" scope="row">7:00 PM</th>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                        <td class="table__cell" data-mix-count="0"><ul class="table__list"></ul></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>
