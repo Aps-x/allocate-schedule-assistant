@@ -53,6 +53,10 @@ img, picture, video, canvas, svg {
 input {
     accent-color: var(--clr_primary);
 }
+:not(input[type="text"], textarea):focus-visible {
+    outline: 3px solid red;
+    outline-offset: 2px; 
+}
 /* ==========================================================================
 Base
 ========================================================================== */
@@ -77,7 +81,6 @@ Components
     table-layout: fixed;
     text-align: center;
     word-break: break-word;
-    border-bottom: 1px solid black;
     &__heading {
         background-color: var(--clr_primary);
         color: var(--clr_white);

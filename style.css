@@ -54,6 +54,11 @@ input {
   accent-color: var(--clr_primary);
 }
 
+:not(input[type=text], textarea):focus-visible {
+  outline: 3px solid red;
+  outline-offset: 2px;
+}
+
 /* ==========================================================================
 Base
 ========================================================================== */
@@ -79,7 +84,6 @@ Components
   table-layout: fixed;
   text-align: center;
   word-break: break-word;
-  border-bottom: 1px solid black;
 }
 .table__heading {
   background-color: var(--clr_primary);

@@ -466,11 +466,18 @@ function GenerateActionButtons(tc) {
     // Set delete button properties
     button_delete.classList.add("button__options");
     button_delete.dataset.timeCommitmentPairing = tc.GetID();
-
+    // Delete button visuals
     var img_trash = document.createElement("img");
     img_trash.src = "images/trash.svg";
+    img_trash.alt = "";
     button_delete.appendChild(img_trash);
-
+    // Accessibility context
+    const delete_context = document.createElement("span");
+    delete_context.classList.add("visually_hidden");
+    delete_context.innerText = `Delete: ${tc.GetName()} ${tc.GetActivityID()} on ${tc.GetDay()} at ${tc.GetStartTime()}`;
+    // Add span to button
+    button_delete.appendChild(delete_context);
+    // Listen for click event
     button_delete.onclick = function() {
         DeleteTimeCommitment(this);
     };
@@ -480,11 +487,18 @@ function GenerateActionButtons(tc) {
     // Set hide button properties
     button_hide.classList.add("button__options");
     button_hide.dataset.timeCommitmentPairing = tc.GetID();
-
+    // Hide button visuals
     var img_eye = document.createElement("img");
     img_eye.src = "images/eye.svg";
+    img_eye.alt = "";
     button_hide.appendChild(img_eye);
-
+    // Accessibility context
+    const hide_context = document.createElement("span");
+    hide_context.classList.add("visually_hidden");
+    hide_context.innerText = `Hide: ${tc.GetName()} ${tc.GetActivityID()} on ${tc.GetDay()} at ${tc.GetStartTime()}`;
+    // Add span to button
+    button_hide.appendChild(hide_context);
+    // Listen for click event
     button_hide.onclick = function() {
         HideTimeCommitmentToggle(this);
     };
@@ -668,7 +682,7 @@ function GetIndex(max_steps, current_step) {
 }
 function PaintWithMixing(cell, tc) {
     // This is really dumb; I don't think anyone would actually want to use this
-    // It was fun making this anway lol
+    // It was fun making this anyway lol
     console.log("MixThePaint()");
     // First color entered for the cell, modify --clr_one
     if (GetCustomPropertyValue(cell, "--clr_one") == "transparent") {
