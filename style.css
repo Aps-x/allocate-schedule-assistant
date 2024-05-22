@@ -3,11 +3,13 @@ Abstract
 ========================================================================== */
 :root {
   --clr_white: hsl(0, 0%, 100%);
+  --clr_gray_100: hsl(0, 0%, 95%);
+  --clr_gray_500: hsl(0, 2%, 25%);
+  --clr_gray_900: hsl(0, 0%, 11%);
   --clr_black: hsl(0, 0%, 0%);
-  --clr_gray_light: hsl(0, 0%, 95%);
-  --clr_gray_dark: hsl(270, 2%, 25%);
   --clr_blue: hsl(195, 100%, 20%);
-  --clr_primary: var(--clr_blue);
+  --clr_blue_light: hsl(195, 100%, 40%);
+  --clr_shadow: hsla(0, 0%, 0%, 0.2);
   --ff_main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --fw_regular: 400;
   --fw_medium: 500;
@@ -19,6 +21,24 @@ Abstract
   --fs_large: 3rem;
 }
 
+@media (prefers-color-scheme: light) {
+  :root {
+    --clr_primary: var(--clr_blue);
+    --clr_neutral_1000: var(--clr_white);
+    --clr_neutral_900: var(--clr_gray_100);
+    --clr_neutral_100: var(--clr_gray_900);
+    --clr_neutral_000: var(--clr_black);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clr_primary: var(--clr_blue_light);
+    --clr_neutral_1000: var(--clr_gray_900);
+    --clr_neutral_900: var(--clr_gray_500);
+    --clr_neutral_100: var(--clr_gray_100);
+    --clr_neutral_000: var(--clr_white);
+  }
+}
 /* ==========================================================================
 HTML Elements
 ========================================================================== */
@@ -35,7 +55,8 @@ body {
   font-family: var(--ff_main);
   font-size: var(--fs_regular);
   font-weight: var(--fw_regular);
-  color: var(--clr_black);
+  color: var(--clr_neutral_000);
+  background-color: var(--clr_neutral_1000);
   line-height: 1.4;
   text-rendering: optimizeSpeed;
 }
@@ -50,13 +71,10 @@ img, picture, video, canvas, svg {
   shape-margin: 0.75rem;
 }
 
-input {
+input, textarea {
   accent-color: var(--clr_primary);
-}
-
-:not(input[type=text], textarea):focus-visible {
-  outline: 3px solid red;
-  outline-offset: 2px;
+  color: var(--clr_neutral_000);
+  background-color: var(--clr_neutral_1000);
 }
 
 /* ==========================================================================
@@ -103,10 +121,10 @@ Components
   background-color: var(--clr_mix);
 }
 .table__cell:not(:last-child) {
-  border-right: 1px solid var(--clr_black);
+  border-right: 1px solid var(--clr_neutral_000);
 }
 .table__row:nth-child(even) {
-  background-color: var(--clr_gray_light);
+  background-color: var(--clr_neutral_900);
 }
 .table__head:only-child {
   display: none;
@@ -119,9 +137,9 @@ Components
   height: 100%;
 }
 .table__item {
-  color: var(--clr_white);
+  color: var(--clr_neutral_1000);
   overflow: hidden;
-  text-shadow: -1px -1px 0 var(--clr_black), 1px -1px 0 var(--clr_black), -1px 1px 0 var(--clr_black), 1px 1px 0 var(--clr_black);
+  text-shadow: -1px -1px 0 var(--clr_neutral_000), 1px -1px 0 var(--clr_neutral_000), -1px 1px 0 var(--clr_neutral_000), 1px 1px 0 var(--clr_neutral_000);
 }
 
 .form__input[type=text] {
@@ -177,6 +195,10 @@ Components
   width: -moz-fit-content;
   width: fit-content;
   margin-inline: auto;
+}
+.button:focus-visible {
+  outline: 3px solid red;
+  outline-offset: 2px;
 }
 .button__options {
   --btn_clr_text: var(--clr_white);
@@ -267,7 +289,7 @@ Page & Layout
 
 .header {
   background-color: var(--clr_primary);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 5px var(--clr_shadow);
 }
 .header__inner {
   padding-block: 1rem;
@@ -289,7 +311,7 @@ Page & Layout
 .section__subheading {
   font-size: var(--fs_medium);
   font-weight: var(--fw_semibold);
-  color: var(--clr_gray_dark);
+  color: var(--clr_neutral_100);
 }
 
 .help_section__article {
