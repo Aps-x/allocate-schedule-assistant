@@ -280,7 +280,7 @@ class LinkedList {
         while (current !== null) {
             // Check if the current node's ID matches the given ID
             if (current.element.id === id) {
-               return current;
+               return current.element;
             }
             current = current.next;
         }
@@ -488,6 +488,7 @@ function GenerateActionButtons(tc) {
     // Set hide button properties
     button_hide.classList.add("button__options");
     button_hide.dataset.timeCommitmentPairing = tc.GetID();
+    button_hide.setAttribute("aria-pressed", "false");
     // Hide button visuals
     var img_eye = document.createElement("img");
     img_eye.src = "images/eye.svg";
@@ -521,20 +522,28 @@ function DeleteTimeCommitment(button) {
     }
 }
 function HideTimeCommitmentToggle(button) {
-    const tc_to_toggle_hide = tc_list.findByID(parseInt(button.dataset.timeCommitmentPairing))
+    // Find the time commitment to toggle permanent hidden status
+    const tc = tc_list.findByID(parseInt(button.dataset.timeCommitmentPairing))
+    // Toggle permanent hidden status
+    tc.TogglePermanentHide();
 
-    tc_to_toggle_hide.element.TogglePermanentHide();
+    // Update visuals based on permanent hidden status
+    const button_image = button.querySelector("img");
+    const button_text = button.querySelector("span");
 
-    // Set hide button visuals
-    const button_image = button.firstChild;
-    const src = button_image.getAttribute('src');
-    
-    if (src === "images/eye.svg") {
+    // Time commitment is hidden
+    if (tc.GetPermanentHiddenStatus() === true) {
         button_image.setAttribute('src', "images/eye_off.svg");
-    } 
-    else if (src === "images/eye_off.svg") {
-        button_image.setAttribute('src', "images/eye.svg");
+        button_text.innerText = `Show: ${tc.GetName()} ${tc.GetActivityID()} on ${tc.GetDay()} at ${tc.GetStartTime()}`;
+        button.setAttribute("aria-pressed", "true");
     }
+    // Time comittment is NOT hidden
+    else if (tc.GetPermanentHiddenStatus() === false) {
+        button_image.setAttribute('src', "images/eye.svg");
+        button_text.innerText = `Hide: ${tc.GetName()} ${tc.GetActivityID()} on ${tc.GetDay()} at ${tc.GetStartTime()}`;
+        button.setAttribute("aria-pressed", "false");
+    }
+
     // Re-paint the timetable
     ResetTimetable();
     if (!tc_list.isEmpty()) {

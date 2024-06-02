@@ -11,11 +11,16 @@
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
+    <script src="light_dark_toggle.js" defer></script>
 </head>
-<body>
+<body class="light">
     <header class="header">
         <div class="header__inner | content_column">
             <h1 class="header__title">Allocate Schedule Assistant</h1>
+            <button id="light_dark_toggle" class="button__options | button__options--dark" aria-pressed="false">
+                <img src="images/moon.svg" alt="">
+                <span class="visually_hidden">Toggle light/dark mode</span>
+            </button>
         </div>
     </header>
 
