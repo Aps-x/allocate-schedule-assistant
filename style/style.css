@@ -301,8 +301,8 @@ Page & Layout
 .header__inner {
   padding-block: 1rem;
   display: grid;
-  grid-template-columns: auto 1fr;
-  justify-items: end;
+  grid-template-columns: 1fr auto;
+  justify-items: start;
   align-items: center;
 }
 .header__title {
